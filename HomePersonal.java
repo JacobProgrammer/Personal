@@ -1,3 +1,4 @@
+
 /**
  * Calculates Home Prices and Preferences
  * All values for budget before 1,000,000 are without the zeros
@@ -21,10 +22,11 @@ public class HomePersonal
     {
         System.out.println("Hello! I will help you find the home of your dreams");
         Scanner homestate = new Scanner(System.in);
+        
         System.out.println("What state are you shopping in?");
         String readHomestate = homestate.nextLine();
         int userPrice = price();
-        if (homestate.equals("Alabama") || homestate.equals("alabama"))
+        if (readHomestate.equals(("Alabama")) || readHomestate .equals(("alabama")))
             if (userPrice > 1000000)
             {
                 System.out.println("The optimal city for you to shop in is Orange Beach");
@@ -38,23 +40,23 @@ public class HomePersonal
             {
                 System.out.println("The optimal city for you to shop in is Hoover");
             }
+            
+        if (readHomestate.equals(("Alaska")) || readHomestate.equals(("alaska")))
+            if (userPrice > 1000000)
+            {
+                System.out.println("The optimal city for you to shop in is The optimal city for you to shop is Juneau");
+            }
         
-        int userPrice2 = price();
-      
-        if (homestate.equals("Alaska") || homestate.equals("alaska"))
-        if (userPrice2 > 1000000)
-        {
-            System.out.println("The optimal city for you to shop in is The optimal city for you to shop is Juneau");
-        }
+            else if (userPrice < 999 && userPrice > 500)
+            {
+                System.out.println("The optimal city for you to shop in is Anchorage");
+            }
         
-        else if (userPrice2 < 999 && userPrice2 > 500)
-        {
-            System.out.println("The optimal city for you to shop in is Anchorage");
-        }
+            else
+            {
+                System.out.println("The optimal city for you to shop in is Fairbanks");
+            }
         
-        else
-        {
-            System.out.println("The optimal city for you to shop in is Fairbanks");
-        }
+        if (readHomestate.equals((
     }
 }
