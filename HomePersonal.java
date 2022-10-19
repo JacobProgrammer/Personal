@@ -57,6 +57,86 @@ public class HomePersonal
                 System.out.println("The optimal city for you to shop in is Fairbanks");
             }
         
-        if (readHomestate.equals((
+        if (readHomestate.equals(("Arizona")) || readHomestate.equals(("arizona")) || readHomestate.equals(("AZ")))
+            if (userPrice > 1000000)
+            {
+                System.out.println("The optimal city for you to shop is Paradise Valley");
+            }
+        
+            else if (userPrice < 999 && userPrice > 500)
+            {
+                System.out.println("The optimal city for you to shop in is Scottsdale");
+            }
+        
+            else
+            {
+                System.out.println("The optimal city for you to shop in is Cave Creek");
+            }
+            
+        if (readHomestate.equals(("Arkansas")) || readHomestate.equals(("arizona")) || readHomestate.equals(("AK")))
+            if (userPrice > 1000000)
+            {
+                System.out.println("The optimal city for you to shop is Fayetteville");
+            }
+        
+            else if (userPrice < 999 && userPrice > 500)
+            {
+                System.out.println("The optimal city for you to shop in is Bentonville");
+            }
+        
+            else
+            {
+                System.out.println("The optimal city for you to shop in is Rogers");
+            }
+            
+        if (readHomestate.equals(("California")) || readHomestate.equals(("california")) || readHomestate.equals(("CA")))
+            if (userPrice > 1000000)
+            {
+                System.out.println("The optimal city for you to shop is Beverly Hills");
+            }
+        
+            else if (userPrice < 999 && userPrice > 500)
+            {
+                System.out.println("The optimal city for you to shop in is Los Angeles");
+            }
+        
+            else
+            {
+                System.out.println("The optimal city for you to shop in is Canoga Park");
+            }
+            
+        if (readHomestate.equals(("Colorado")) || readHomestate.equals(("colorado")) || readHomestate.equals(("CO")))
+            if (userPrice > 1000000)
+            {
+                System.out.println("The optimal city for you to shop is Aspen/Vail");
+            }
+        
+            else if (userPrice < 999 && userPrice > 500)
+            {
+                System.out.println("The optimal city for you to shop in is Denver");
+            }
+        
+            else
+            {
+                System.out.println("The optimal city for you to shop in is Lakewood");
+            }
+            
+        if (readHomestate.equals(("Connecticut")) || readHomestate.equals(("connecticut")) || readHomestate.equals(("CT")))
+            if (userPrice > 1000000)
+            {
+                System.out.println("The optimal city for you to shop is Greenwich");
+            }
+        
+            else if (userPrice < 999 && userPrice > 500)
+            {
+                System.out.println("The optimal city for you to shop in is Ridgefield");
+            }
+        
+            else
+            {
+                System.out.println("The optimal city for you to shop in is Trumbull");
+            }
+            
+        if (readHomestate.equals(("
     }
 }
