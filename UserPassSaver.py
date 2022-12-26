@@ -1,6 +1,21 @@
 import webbrowser
 import re
 import sys
+import hashlib
+
+users = {
+  "user1": {
+    "username": "user1",
+    "password_hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+  },
+  "user2": {
+    "username": "user2",
+    "password_hash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+  }
+}
+
+def get_user_from_database(username):
+  return users.get(username)
 
 def is_valid_email(email):
   pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
@@ -11,8 +26,28 @@ def is_valid_email(email):
   else:
     return False
 
+def login():
+  username = input("Enter your username: ")
+  password = input("Enter your password: ")
 
-setup = input("Welcome to UserPass! Would you like to set up an account using Google or Email?")
+  user = get_user_from_database(username)
+  if user is None:
+    print("Invalid username or password")
+    return
+
+  hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+  if hashed_password == user["password_hash"]:
+    print("Login successful!")
+  else:
+    print("Invalid username or password")
+
+
+setup = input("Welcome to UserPass! Would you like to login or set up an account using Google or Email?")
+if setup.lower() == "login":
+  login()
+  sys.exit()
+
 if setup.lower() == "google":
   url = "https://accounts.google.com/ServiceLogin/signinchooser?elo=1&ifkv=AeAAQh4m4_aKUtVMmW-iz9EMx8VNwtBcNc7rfxZziQEyyj4-BFOdBOcSI4MgbLPGc5v7sLQPtVwXTA&flowName=GlifWebSignIn&flowEntry=ServiceLogin/"
   webbrowser.open(url)
