@@ -1,7 +1,6 @@
 import re
 import sys
 import hashlib
-import requests
 
 users = {}  
 
@@ -26,14 +25,18 @@ def login_user():
     print("Invalid username or password")
     return
 
-
-  # Use the hashlib module to check if the password is correct
   hashed_password = hashlib.sha256(password.encode()).hexdigest()
   if hashed_password == user["password_hash"]:
     print("Login successful!")
+    print()
     print("Welcome back to UserPass " + username + "!")
   else:
     print("Invalid username or password")
+
+  if not is_valid_email(emailsetup):
+    print("Please enter a valid email address.")
+    return
+  hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
 
 setup = input("Welcome to UserPass! Would you like to login or set up an account?")
