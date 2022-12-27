@@ -32,19 +32,9 @@ def login_user():
   if hashed_password == user["password_hash"]:
     print("Login successful!")
     print("Welcome back to UserPass " + username + "!")
-    get_news()
   else:
     print("Invalid username or password")
 
-def get_news():
-  # Use the requests module to retrieve the news page HTML
-  url = "https://www.dailynews.com/"
-  response = requests.get(url)
-  html = response.text
-
-  # Use regular expressions to extract the news articles from the HTML
-  headlines = re.findall(r'<h2>(.*?)</h2>', html)
-  links = re.findall(r'<a href="(.*?)"', html)
 
 setup = input("Welcome to UserPass! Would you like to login or set up an account?")
 if setup.lower() == "login":
