@@ -1,6 +1,7 @@
 import re
 import sys
 import hashlib
+import webbrowser
 
 users = {}  
 
@@ -30,6 +31,21 @@ def login_user():
     print("Login successful!")
     print()
     print("Welcome back to UserPass " + username + "!")
+    post_login = input("What would you like to view today?")
+    if post_login.lower() == "weather":
+      weather_location = input("(What area would you like to view (Los Angeles, New York, Miami)")
+      if weather_location.lower() == "los angeles":
+        webbrowser.open("https://weather.com/weather/today/l/ba9caaca5638fe037a3f428a2a0366c2bd02877d91cb0c5e494384f1cbfc5c1f")
+      elif weather_location.lower() == "new york":
+        webbrowser.open("https://weather.com/weather/tenday/l/New+York+NY+USNY0996:1:US")
+      elif weather_location.lower() == "miami":
+        webbrowser.open("https://weather.com/weather/tenday/l/864c2346b3a36fcc8c5d5a73b0651ea44f9968ff6c6b445530eeb9cef734ae58")
+      else:
+        sys.exit()
+    elif post_login.lower() == "stock market" or post_login.lower() == "stocks":
+      webbrowser.open("https://finance.yahoo.com/")
+    else:
+      sys.exit()
   else:
     print("Invalid username or password")
 
@@ -39,7 +55,7 @@ def login_user():
   hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
 
-setup = input("Welcome to UserPass! Would you like to login or set up an account?")
+setup = input("Welcome to UserPass! Lets set up your account. Enter 'setup' to continue ")
 if setup.lower() == "login":
   login_user()
   sys.exit()
