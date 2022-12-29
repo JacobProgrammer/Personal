@@ -31,7 +31,7 @@ def login_user():
     print("Login successful!")
     print()
     print("Welcome back to UserPass " + username + "!")
-    post_login = input("What would you like to view today?")
+    post_login = input("(What would you like to view today? (Weather, Stock Market, Shoe Styles, or Clothing Styles) ")
     if post_login.lower() == "weather":
       weather_location = input("(What area would you like to view (Los Angeles, New York, Miami)")
       if weather_location.lower() == "los angeles":
@@ -44,6 +44,10 @@ def login_user():
         sys.exit()
     elif post_login.lower() == "stock market" or post_login.lower() == "stocks":
       webbrowser.open("https://finance.yahoo.com/")
+    elif post_login.lower() == "shoes":
+      webbrowser.open("https://stylecaster.com/shoe-trends-2023/")
+    elif post_login.lower() == "clothes":
+      webbrowser.open("https://www.yahoo.com/lifestyle/best-2023-fashion-trends-shop-140000909.html") 
     else:
       sys.exit()
   else:
