@@ -35,7 +35,7 @@ def login_user():
     if post_login.lower() == "weather":
       weather_location = input("(What area would you like to view (Los Angeles, New York, Miami)")
       if weather_location.lower() == "los angeles":
-        webbrowser.open("https://weather.com/weather/today/l/ba9caaca5638fe037a3f428a2a0366c2bd02877d91cb0c5e494384f1cbfc5c1f")
+        webbrowser.open("https://weather.com/weather/tenday/l/b1d7089dcff056d6907ce58c458f2a32932387f1854af523080c6c79e2678e66")
       elif weather_location.lower() == "new york":
         webbrowser.open("https://weather.com/weather/tenday/l/New+York+NY+USNY0996:1:US")
       elif weather_location.lower() == "miami":
