@@ -18,8 +18,8 @@ def is_valid_email(email):
     return False
 
 def login_user():
-  username = input("Enter your username: ")
-  password = input("Enter your password: ")
+  username = input("Enter your username: ").lower()
+  password = input("Enter your password: ").lower()
 
   user = get_user(username)
   if user is None:
