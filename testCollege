@@ -1,0 +1,45 @@
+import webbrowser
+
+COLLEGE_MAJOR_MAP = {
+    "STEM": "https://www.usnews.com/best-graduate-schools/top-engineering-schools",
+    "Mathematics": "https://www.usnews.com/best-graduate-schools/top-science-schools/mathematics-rankings",
+    "English": "https://www.collegefactual.com/majors/communication-journalism-media/english-language-and-literature"
+               "/rankings/top-ranked/",
+    "Medicine": "https://www.usnews.com/best-graduate-schools/top-medical-schools",
+    "Law": "https://www.usnews.com/best-graduate-schools/top-law-schools"
+}
+
+COLLEGE_SPECIALITY_MAP = {
+    "Mechanical Engineering": "mechanical-engineering-rankings",
+    "Chemical Engineering": "chemical-engineering-rankings",
+    "Algebra": "mathematics",
+    "Calculus": "mathematics",
+    "Educational Mathematics": "teacher-education-and-development/mathematics-education/rankings/top-ranked/",
+    "Journalism": "communication-journalism-media/journalism/rankings/top-ranked/"
+}
+
+
+def get_major_interest_input(colleges_map, input_prompt):
+    while True:
+        inputs = input(input_prompt).strip().split(",")
+        inputs = [input.strip().title() for input in inputs]
+        valid_inputs = [input for input in inputs if input in colleges_map.keys()]
+        if valid_inputs:
+            return valid_inputs
+        print(f"Please choose from: {', '.join(colleges_map.keys())}")
+
+
+print("Welcome to DreamCollege!")
+print("We are going to ask you several questions to determine which college is the best for you!")
+
+majors = get_major_interest_input(COLLEGE_MAJOR_MAP, "What is your major of interest (comma-separated list)? ")
+interests = get_major_interest_input(COLLEGE_SPECIALITY_MAP,
+                                     "What is your desired speciality in your desired major (comma-separated list)? ")
+
+for major in majors:
+    for interest in interests:
+        base_url = COLLEGE_MAJOR_MAP[major]
+        speciality_url = COLLEGE_SPECIALITY_MAP[interest]
+        full_url = f"{base_url}/{speciality_url}"
+        print(f"Excellent! Here are the best colleges in 2023 for {major} ({interest})")
+        webbrowser.open(full_url)
