@@ -19,30 +19,38 @@ elif major.lower() == "Law" or "law":
 
 interest = input("What is your desired speciality in your desired major?")
 
-if interest.lower() == "Mechanical Engineering" or "mechanical engineering":
+if interest.lower() == "Mechanical Engineering" or interest.lower() == "mechanical engineering":
     print("Excellent! Here are the best colleges in 2023 for Mechanical Engineering")
     webbrowser.open("https://www.usnews.com/best-graduate-schools/top-engineering-schools"
                     "/mechanical-engineering-rankings")
-elif interest.lower() == "Chemical Engineering":
+    sys.exit()
+
+elif interest.lower() == "Chemical Engineering" or interest.lower() == "chemical engineering":
     print("Excellent! Here are the best colleges in 2023 for Chemical Engineering")
     webbrowser.open("https://www.usnews.com/best-graduate-schools/"
                     "top-engineering-schools/chemical-engineering-rankings")
+    sys.exit()
 
-
-if interest.lower() == "Algebra" or "Educational":
+if interest.lower() == "Algebra" or interest.lower() == "Educational":
     print("Excellent! Here are the best colleges in 2023 for Algebra")
     webbrowser.open("https://www.usnews.com/education/"
                     "best-global-universities/united-states/mathematics")
-elif interest.lower() == "Calculus" or "calculus":
+    sys.exit()
+
+elif interest.lower() == "Calculus" or interest.lower() == "calculus":
     print("Excellent! Here are the best colleges in 2023 for Calculus")
     webbrowser.open("https://www.usnews.com/education/"
                     "best-global-universities/united-states/mathematics")
+    sys.exit()
+
 elif interest.lower() == "Educational Mathematics":
     print("Excellent! Here are the best colleges in 2023 for Educational Mathematics")
     webbrowser.open("https://www.collegefactual.com/majors/education/teacher-education"
                     "-and-development/mathematics-education/rankings/top-ranked/")
+    sys.exit()
 
-if interest.lower() == "Journalism" or "journalism":
+if interest.lower() == "Journalism" or interest.lower() == "journalism":
     print("Excellent! Here are the best colleges in 2023 for Journalism")
     webbrowser.open("https://www.collegefactual.com/majors/"
                     "communication-journalism-media/journalism/rankings/top-ranked/")
+    sys.exit()
