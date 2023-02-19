@@ -2,6 +2,10 @@ import random
 import string
 import sqlite3
 import getpass
+import tldextract
+
+# Valid top-level domains
+VALID_DOMAINS = ['.com', '.net', '.org', '.gov', '.edu']
 
 # Connect to database
 conn = sqlite3.connect('passwords.db')
@@ -19,6 +23,13 @@ def password():
                         "If you no longer want to continue please type 'Done': ")
         if newSite.lower() == 'done':
             break
+
+        # Validate website
+        domain = tldextract.extract(newSite).suffix
+        if domain not in VALID_DOMAINS:
+            print("Invalid website. Please enter a valid website with a .com, .net, .org, .gov, or .edu domain.")
+            continue
+
         newPassword = eval(input("Please type the number of characters you would like in your password: "))
 
         # Expand character set to include lowercase letters and special characters
@@ -47,6 +58,13 @@ def username():
                             "If you no longer want to continue please type 'Done': ")
         if newUsername.lower() == "done":
             break
+
+        # Validate website
+        domain = tldextract.extract(newUsername).suffix
+        if domain not in VALID_DOMAINS:
+            print("Invalid website. Please enter a valid website with a .com, .net, .org, .gov, or .edu domain.")
+            continue
+
 
         newUser = eval(input("Please type the number of characters you would like in your username: "))
 
