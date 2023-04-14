@@ -1,7 +1,5 @@
 import re 
 import sqlite3
-import hashlib
-import getpass
 import bcrypt
 from tkinter import *
 from tkinter import messagebox
