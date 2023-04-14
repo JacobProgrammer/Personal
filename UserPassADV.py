@@ -162,17 +162,20 @@ class Application(Frame):
       # Display the user records in a message box
       messagebox.showinfo("Users", user_str)
     def delete_all_users(self):
+    # Ask for confirmation before deleting all users
+        confirm = messagebox.askyesno("Confirmation", "Are you sure you want to delete all users? This action cannot be undone.")
+        if not confirm:
+            return
+    
     # Remove the users database file
-      os.remove("users.db")
-      # Recreate an empty users database file
-      with open("users.db", "w") as f:
-        pass
-    # Display a message box to confirm deletion
-      messagebox.showinfo("Success", "All users have been deleted")
-
-
-
-
+        os.remove("users.db")
+    
+    # Recreate an empty users database file
+        with open("users.db", "w") as f:
+            pass
+    
+    # Display a success message
+        messagebox.showinfo("Success", "All users have been deleted")
 
 
 
