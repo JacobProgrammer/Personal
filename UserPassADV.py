@@ -5,7 +5,10 @@ import getpass
 import bcrypt
 from tkinter import *
 from tkinter import messagebox
-import weatherAPI
+import os
+
+
+
 
 def validate_email(email):
     # Check if the email address is valid using a regular expression
@@ -73,6 +76,8 @@ def login_user(username, password):
 
 
 class Application(Frame):
+  with open("users.txt", "w") as f:
+    pass
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
@@ -105,6 +110,15 @@ class Application(Frame):
         self.login_button = Button(self, text="Login", command=self.login_user)
         self.login_button.grid(row=3, column=1)
 
+        # Create a display users button
+        self.display_users_button = Button(self, text="Display Users", command=self.display_users)
+        self.display_users_button.grid(row=4, column=0)
+
+        # Create a delete all users button
+        self.delete_all_users_button = Button(self, text="Delete All Users", command=self.delete_all_users)
+        self.delete_all_users_button.grid(row=4, column=1)
+
+
     def register_user(self):
         # Get values from the entry fields
         username = self.username_entry.get()
@@ -112,24 +126,56 @@ class Application(Frame):
         email = self.email_entry.get()
         # Validate the email address
         if not validate_email(email):
-          messagebox.showerror("Error", "Invalid email address")
-          return
+            messagebox.showerror("Error", "Invalid email address")
+            return
 
         try:
-          register_user(username, password, email)
-          messagebox.showinfo("Success", "User registered successfully")
+            register_user(username, password, email)
+            messagebox.showinfo("Success", "User registered successfully")
         except ValueError as e:
-          messagebox.showerror("Error", str(e))
-    def login_user(self):
-    # Get values from the entry fields
-      username = self.username_entry.get()
-      password = self.password_entry.get()
+            messagebox.showerror("Error", str(e))
 
-      # Check if the username and password are correct
-      if login_user(username, password):
-        messagebox.showinfo("Success", "Logged in successfully")
-      else:
-        messagebox.showerror("Error", "Incorrect username or password")
+    def login_user(self):
+        # Get values from the entry fields
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        # Check if the username and password are correct
+        if login_user(username, password):
+            messagebox.showinfo("Success", "Logged in successfully")
+        else:
+            messagebox.showerror("Error", "Incorrect username or password")
+
+    def display_users(self):
+    # Retrieve all user records from the database
+      conn = sqlite3.connect("users.db")
+      c = conn.cursor()
+      c.execute("SELECT username, email FROM users")
+      users = c.fetchall()
+      conn.close()
+
+      # Format the user records as a string
+      user_str = ""
+      for user in users:
+        user_str += f"Username: {user[0]}\nEmail: {user[1]}\n\n"
+
+      # Display the user records in a message box
+      messagebox.showinfo("Users", user_str)
+    def delete_all_users(self):
+    # Remove the users database file
+      os.remove("users.db")
+      # Recreate an empty users database file
+      with open("users.db", "w") as f:
+        pass
+    # Display a message box to confirm deletion
+      messagebox.showinfo("Success", "All users have been deleted")
+
+
+
+
+
+
+
 root = Tk()
 app = Application(master=root)
 app.mainloop()
