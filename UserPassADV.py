@@ -91,6 +91,8 @@ def login_user(username, password):
     # Hash the provided password and compare it to the hashed password in the database
     hashed_password = bcrypt.hashpw(password.encode("utf-8"), result[0])
     if hashed_password == result[0]:
+        # Display a welcome message box
+        welcome_user(username)
         return True
     else:
         return False
@@ -112,6 +114,10 @@ def delete_all_users():
 
         # Show a message box confirming the action
         messagebox.showinfo("Success", "All users deleted successfully")
+
+def welcome_user(username):
+    messagebox.showinfo("Welcome", f"Welcome, {username}!")
+
 
 
 class Application(Frame):
