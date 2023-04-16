@@ -148,19 +148,19 @@ class Application(Frame):
         self.email_entry.grid(row=2, column=1)
 
         # Create a register button
-        self.register_button = Button(self, text="Register", command=self.register_user, bg="lightblue", font=("Helvetica", 12))
+        self.register_button = Button(self, text="Register", command=self.register_user, font=("Helvetica", 12))
         self.register_button.grid(row=4, column=0, padx=10, pady=10)
 
         # Create a login button
-        self.login_button = Button(self, text="Login", command=self.login_user, bg="lightgreen", font=("Helvetica", 12))
+        self.login_button = Button(self, text="Login", command=self.login_user, font=("Helvetica", 12))
         self.login_button.grid(row=4, column=2, padx=15, pady=10)
 
         # Create a display users button
-        self.display_users_button = Button(self, text="Display Users", command=self.display_users, bg="orange", font=("Helvetica", 12))
+        self.display_users_button = Button(self, text="Display Users", command=self.display_users, font=("Helvetica", 12))
         self.display_users_button.grid(row=4, column=1, padx=10, pady=10)
 
         # Create a delete all users button
-        self.delete_all_users_button = Button(self, text="Delete All Users", command=self.delete_all_users, bg="red", font=("Helvetica", 12))
+        self.delete_all_users_button = Button(self, text="Delete All Users", command=self.delete_all_users, font=("Helvetica", 12))
         self.delete_all_users_button.grid(row=4, column=3, padx=10, pady=10)
 
 
