@@ -3,8 +3,7 @@ import sqlite3
 import bcrypt
 from tkinter import *
 from tkinter import messagebox
-
-
+from tkinter import simpledialog
 
 def display_users():
     # Connect to the database
@@ -15,7 +14,7 @@ def display_users():
     cursor.execute('SELECT username FROM users')
     results = cursor.fetchall()
 
-    # Create a new window to show the usernames
+    # Create a new window to show the usernames and associated email and password
     display_window = Toplevel()
     display_window.title("User List")
 
@@ -27,8 +26,40 @@ def display_users():
     for row in results:
         user_list.insert(END, row[0])
 
-    # Close the database connection
-    conn.close()
+    # Add a button to show the email and password for the selected user
+    def show_user_info():
+        selection = user_list.curselection()
+        if selection:
+            selected_user = user_list.get(selection[0])
+
+            # Retrieve the user's email and hashed password from the database
+            cursor.execute('SELECT email, password FROM users WHERE username=?', (selected_user,))
+            result = cursor.fetchone()
+
+            # Close the database connection
+            conn.close()
+
+            # If the username doesn't exist in the database, show an error message
+            if not result:
+                messagebox.showerror("Error", "User not found")
+                return
+
+            # Ask the user to enter their password
+            password = simpledialog.askstring("Password", "Enter your password to view user information", show='*')
+
+            # Check if the provided password matches the user's password
+            if not bcrypt.checkpw(password.encode('utf-8'), result[1]):
+                messagebox.showerror("Error", "Incorrect password")
+                return
+
+            # Show the user's email and password
+            messagebox.showinfo("User Information", f"Username: {selected_user}\nEmail: {result[0]}\nPassword: {result[1].decode('utf-8')}")
+        else:
+            # Handle the case where no item is selected
+            messagebox.showerror("Error", "No user selected")
+
+    show_info_button = Button(display_window, text="Show Info", command=show_user_info)
+    show_info_button.pack()
 
 
 def validate_email(email):
@@ -67,6 +98,7 @@ def register_user(username, password, email):
                  (username text, password text, email text)''')
 
     c.execute("INSERT INTO users VALUES (?, ?, ?)", (username, hashed_password, email))
+
     conn.commit()
     conn.close()
 
