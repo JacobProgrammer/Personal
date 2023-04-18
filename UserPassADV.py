@@ -61,6 +61,27 @@ def display_users():
     show_info_button = Button(display_window, text="Show Info", command=show_user_info)
     show_info_button.pack()
 
+    # Add a button to delete the selected user
+    def delete_user():
+        selection = user_list.curselection()
+        if selection:
+            selected_user = user_list.get(selection[0])
+
+            # Confirm the action with a message box
+            confirmed = messagebox.askyesno("Confirm Delete", f"Are you sure you want to delete {selected_user}?")
+            if confirmed:
+                # Delete the user from the database
+                cursor.execute('DELETE FROM users WHERE username=?', (selected_user,))
+                conn.commit()
+
+                # Remove the user from the listbox
+                user_list.delete(selection[0])
+        else:
+            # Handle the case where no item is selected
+            messagebox.showerror("Error", "No user selected")
+
+    delete_button = Button(display_window, text="Delete User", command=delete_user)
+    delete_button.pack()
 
 def validate_email(email):
     # Check if the email address is valid using a regular expression
